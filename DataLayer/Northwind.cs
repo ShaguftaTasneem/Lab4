@@ -9,7 +9,7 @@ namespace DataLayer
 {
     public static class Northwind
     {
-        public static SqlConnection GetConnection()
+        public static SqlConnection GetConnection()  // Function to Connect to database NorthWind
         {
             SqlConnection connection = new SqlConnection();
             string ConnectionString = "Data Source=SOFTDEV\\SQLEXPRESS;Initial Catalog=Northwind;Integrated Security=true;";

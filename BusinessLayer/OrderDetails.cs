@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace BusinessLayer
 {
-   public class OrderDetails
+   public class OrderDetails   
     {
 
         public int OrderID { get; set; }

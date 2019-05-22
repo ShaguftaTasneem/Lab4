@@ -39,10 +39,10 @@ namespace Lab4
         private void btnOrderDetail_Click(object sender, EventArgs e)
         {
 
-            int ID = Convert.ToInt32(txtEnterID.Text);
-            OrderDetails who = new OrderDetails();
+            int ID = Convert.ToInt32(txtEnterID.Text);    // Read from TExt box entry
+            OrderDetails who = new OrderDetails();        // Object Creation
             who = DataLayer.OrderDetailsDB.GetOrderDetailsDB(Convert.ToString(ID));
-
+            // Data to be displayed on the labels
             lblOrderID.Text = who.OrderID.ToString();
             lblProductID.Text = who.ProductID;
             lblUnitPrice.Text = who.UnitPrice.ToString(); ;

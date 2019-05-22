@@ -18,26 +18,22 @@ namespace Lab4
     {
         public frmOrders()
         {
-            InitializeComponent();
-
+            InitializeComponent(); //Initialization of the Application
         }
 
-        private void frmSupplier1_Load(object sender, EventArgs e)
+        private void frmSupplier1_Load(object sender, EventArgs e)  //Form Loader
         {
-            //var lst= DataLayer.OrdersDB.GetOrdersGridDB();
-            //dataGridView1.DataSource = lst;
-
-            // dataGridView1.DataSource = DataLayer.OrdersDB.GetOrdersDB();
+            
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)  //Button to enter the Order ID for Record Display
             {
-                int ID = Convert.ToInt32(txtEnterID.Text);
-                Orders who = new Orders();
-            //string s =OrderDetailsDB.GetOrderDetailsDB("");
+                int ID = Convert.ToInt32(txtEnterID.Text);  //Converts the string in the text box into integer datatype
+                Orders who = new Orders();                  //Object declaration
+            
 
-                who = DataLayer.OrdersDB.GetOrdersDB(Convert.ToString(ID));
-
+                who = DataLayer.OrdersDB.GetOrdersDB(Convert.ToString(ID));  //Object path 
+                // Data elements to be displayed in labels
                 lblOrderID.Text = who.OrderID.ToString();
                 lblCustomerID.Text = who.CustomerID.ToString();
             lblOrderDate.Text = Convert.ToDateTime(who.OrderDate).ToString();
@@ -52,60 +48,43 @@ namespace Lab4
             Double P = Convert.ToDouble(Total.UnitPrice);
             Double OrderTotal;
             OrderTotal = P * (1 - D) *Q;
-
+            // Displaying the Order Total
             lblOrderTotal.Text =OrderTotal.ToString();
 
-            
-            // Trial 2:  Calculating the Order Total from the data in the Order Details Table 
+        }
 
-
-            //lblOrderTotal.Text = Total.OrderTotal.ToString();
-
-            }
-        
         private void button2_Click(object sender, EventArgs e)
         {
-            // DataLayer.OrdersDB.AddOrders(txtOrderID.Text, txtCustomerID.Text, txtOrderDate.Text, txtRequiredDate.Text, txtShippedDate.Text);;
+            
+            // To update the ShippDate 
 
-            //Trial : To update the ShippDate 
+            DateTime ShipDate = Convert.ToDateTime(txtShippedDate.Text);  //Reads and convert to datetime datatype
+            int iret = DataLayer.OrdersDB.UpdateOrder(ShipDate);          // Function Call
+            
+                if (iret > 0)           // If function works
+                {
+                    
+                    MessageBox.Show(" Shipped Date is Updated");
+                }
+            else    // If function does not work
+            {
+                    MessageBox.Show(" Please enter Valid Shipped Date where RequiredDate > ShippedDate AND ShippedDate < OrderDate in the form of mm/dd/yyyy");
 
-
-            //public static DateTime UpdateOrder(DateTime ShippedDate)
-            //{
-
-            //    string sql = " If (ShippedDate==NOT NULL){ UPDATE  Orders  SET ShippedDate=@ShippedDate where ShippedDate> ORderDate && ShippedDate<RequiredDate} Else {Error Message.Box='Date Field can not be Null'" + ShippedDate;
-
-            //    SqlConnection connection = Northwind.GetConnection();
-            //    SqlCommand command = new SqlCommand(sql, connection);
-
-            //    command.Parameters.AddWithValue("@ShippedDate", ShippedDate);
-
-
-            //    int qq = command.ExecuteNonQuery();
-            //    return qq;
-
-
-
-            ////public static void AddOrders(Date ShippedDate)
-            ////{
-            ////    string sql = "Insert Into Orders" + "(ShippedDate)" + "Values" + "(@ShippedDate)";
-            ////    SqlConnection connection = DataLayer.Northwind.GetConnection();
-            ////    SqlCommand command = new SqlCommand(sql, connection);
-
-            ////    command.Parameters.AddWithValue("@ShippedDate", ShippedDate);
-
-            ////    command.ExecuteNonQuery();
-            ////}
-
-        }
+                }
+            
+            
+            }
+        
+           // Data Display in Grid View at the begginning of the application    
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            dataGridView2.DataSource = DataLayer.OrdersDB.GetOrdersGridDB();
+           
         }
 
-        private void BindGridview() {
-            dataGridView2.DataSource = DataLayer.OrdersDB.GetOrdersGridDB();
+        private void BindGridview()
+        {
+            
         }
 
         private void frmOrders_Load(object sender, EventArgs e)
