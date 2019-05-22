@@ -65,7 +65,7 @@ namespace Lab4
         
         private void button2_Click(object sender, EventArgs e)
         {
-            // DataLayer.OrdersDB.AddOrders(txtOrderID.Text, txtCustomerID.Text, txtOrderDate.Text, txtRequiredDate.Text, txtShippedDate.Text);
+            // DataLayer.OrdersDB.AddOrders(txtOrderID.Text, txtCustomerID.Text, txtOrderDate.Text, txtRequiredDate.Text, txtShippedDate.Text);;
 
             //Trial : To update the ShippDate 
 
